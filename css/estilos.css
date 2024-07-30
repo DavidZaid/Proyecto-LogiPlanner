@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  
+:root{
+    --padding--container:100px 0;
+    --color-tittle:#f8f8f8;
+}
+body{
+    font-family: 'Poppins',sans-serif;
+}
+ .contaner{
+    width:90% ;
+    max-width: 1200px;
+    margin:0 auto;
+    overflow: hidden;
+    background-color:rgb(255, 255, 255);
+    padding: var(--padding--container);
+    
+
+
+ }
+
+
+ .hero{
+      width: 100%;
+      height:100vh;
+      min-height: 600px;
+      max-height: 800px;
+      position:relative; 
+      display:grid;
+      grid-template-rows : 100px 1fr;
+      color: rgb(255, 255, 255);
+      ul {
+         list-style: none;
+       }
+       
+ }
+
+.hero::before{
+    content: "";
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #370a8ae0 0% , #2a087a 100%),url();
+    background-size: cover;
+    clip-path: polygon(100% 0, 100% 64%, 83% 78%, 51% 85%, 17% 80%, 0 63%, 0 0);
+    z-index: -1;
+ /* nav */
+}
+
+ .nav{
+    --padding-container:0; 
+    height: 100%;
+    display:flex;
+    align-items:center; 
+
+ }
+ .nav__titulo {
+   position: absolute;
+   top: 1%;
+   font-size: 36px;
+   color:#f8f8f8;
+ }
+ 
+
+
+.nav__intems{
+list-style:style none;
+
+}
+
+
+ .nav__link{
+    margin-left:20%;
+    padding: 0;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    gap: 2em ;
+    border-radius: 10px;
+    background-color: blueviolet;
+    position:absolute; /* Consider relative positioning */
+    left: 10%;
+ }
+ .nav__links{
+    color: #fff;
+    text-decoration: none;
+    
+      display: flex;
+      align-items: center; /* Alinea los elementos verticalmente en el centro */
+      justify-content:center; /* Distribuye los elementos con espacio entre ellos y a los extremos */
+      display: inline-block; /* Permite que los enlaces se comporten como bloques */
+      padding: 10px 15px; /* Agrega espacio alrededor del texto */
+  
+       
+       
+       
+    
+ }
+
+ .nav__menu{
+    margin-left: auto;
+    cursor: pointer;
+    display: none;
+    
+ }
+
+ .nav__img{
+    display: block;
+    width: 30px;
+
+ }
+
+ .nav__close{
+    display: var(--show , none);
+
+
+ }
+
+ .hero__container{
+    max-width: 900px ;
+    --padding-container:0;
+    display: grid;
+    grid-auto-rows: max-content;
+    align-content:center;
+    gap:2em ; 
+    padding-bottom: 100px;
+    text-align:center;
+    position: absolute;
+   top: 20%;
+   left:5%;
+   width: 800px; /* Adjust as needed */
+   height: auto;
+ 
+ }
+ .hero__title{
+    font-size: 3rem;
+ }
+
+  .heero__paragraph{
+      margin-bottom: 45px;
+      font-size: 12%; /* Tamaño de fuente en píxeles */
+      font-size: 1.15rem; /* Aumenta el tamaño de fuente en un 20% */
+    
+    
+    
+   
+  }
+
+  .cta{
+    display: inline-block;
+    background-color: darkcyan;
+    justify-self: center;
+    color: #fff;
+    text-decoration: none;
+    padding: 23px 35px;
+    border-radius: 30px;
+    align-content:space-between;
+    
+  }
+
+
+
+  .image-container {
+   position: absolute;
+   top: 10%;
+   right:20%;
+   width: 500px; /* Adjust as needed */
+   height: auto;
+ }
+ 
+ @media (max-width: 768px) {
+   .image-container {
+     width: 200px; /* Adjust for smaller screens */
+   }
+ }
+ 
+ .nav__img {
+   display:flex;
+   margin-left: auto;
+   width: 100%; /* Image takes full width of container */
+ }
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+  
