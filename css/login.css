@@ -15,6 +15,14 @@ body {
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
     min-height: 100vh;
+  background: white;
+    padding: 15px 25px;
+    border-radius: 8px;
+    width: 90%;          /* Esto hace que en celular ocupe casi toda la pantalla */
+    max-width: 400px;    /* Esto evita que en PC se vea gigante */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    margin: 20px auto;   /* Centra el cuadrito */
+  
   }
   
   /* Login form container */

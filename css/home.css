@@ -1,0 +1,116 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Estilo del título y el header */
+.nav__titulo {
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    font-size: 62px; /* Puedes ajustar esto según el tamaño deseado */
+    color: #f8f8f8;
+    z-index: 10;
+}
+
+/* Estilo del menú de navegación */
+nav {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: right;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, #370a8ae0 0%, #2a087a 100%);
+    background-size: cover;
+    clip-path: polygon(0 0, 100% 0, 100% 9%, 0 9%);
+}
+
+/* Estilo de la lista de menú */
+.menu-items {
+    margin-left: 20%;
+    padding: 10px 15px;
+    display:grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    gap: 3.56em;
+    border-radius: 10px;
+    background-color: blueviolet;
+    position: absolute;
+    left: 15%;
+    top: 6.8px;
+    list-style: none;
+    cursor: pointer;
+}
+
+/* Estilo de los enlaces */
+.menu-items a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 100; /* Ajuste del grosor de la letra */
+    padding: 25px 20px; /* Uniformidad en el tamaño del padding */
+    border-radius: 10px;
+    left: 18px;
+    transition: background-color 0.3s ease;
+}
+
+/* Efecto al hacer hover en los enlaces */
+.menu-items a:hover {
+    background-color: #582d82; /* Color más oscuro al hacer hover */
+}
+
+/* Estilo del contenido principal */
+main {
+   
+        text-align: center;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+h2 {
+    text-align: center;
+    color: #370a8a;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background-color:darkcyan;
+    color: #ffffff;
+    padding: 35px 82px;
+    border: none;
+    border-radius: px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #582d82;
+}
