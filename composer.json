@@ -1,5 +1,13 @@
 {
     "require": {
         "mongodb/mongodb": "^1.16"
+    },
+    "config": {
+        "allow-plugins": {
+            "mongodb/mongodb": true
+        },
+        "platform": {
+            "ext-mongodb": "1.16"
+        }
     }
 }
