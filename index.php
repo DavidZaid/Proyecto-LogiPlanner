@@ -31,35 +31,29 @@
         }
 
         .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 120px;
-    padding: 0 5%;
-    max-width: 1300px;
-    margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 120px;
+            padding: 0 5%;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1000;
+        }
 
-    position: relative;
-    z-index: 1000;
-}
-
-
-    .nav__titulo {
-    font-size: 2.6rem;
-    font-weight: 900;
-    color: #fff;
-    letter-spacing: -1.5px;
-    text-transform: none;
-
-    position: absolute;
-    left: -280px;
-    top: 10px;
-
-    z-index: 1500;        /* 👈 lo subimos sobre el fondo */
-    pointer-events: none; /* 👈 no bloquea el menú */
-}
-
-
+        .nav__titulo {
+            font-size: 2.6rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -1.5px;
+            text-transform: none;
+            position: absolute;
+            left: -280px; /* Esto se ajustará en el @media de abajo para móvil */
+            top: 10px;
+            z-index: 1500;
+            pointer-events: none;
+        }
 
         .nav__link--menu {
             display: flex;
@@ -72,7 +66,6 @@
             margin: 0;
             gap: 5px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            
         }
 
         .nav__links {
@@ -284,13 +277,65 @@
             font-size: 0.95rem;
         }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE AJUSTADO SIN DAÑAR NADA --- */
         @media (max-width: 992px) {
-            .hero__main { flex-direction: column; text-align: center; }
-            .image-container { justify-content: center; margin-top: 40px; }
-            .hero__title { font-size: 2.8rem; }
-            .nav { height: auto; padding: 30px 20px; flex-direction: column; gap: 30px; }
-            .nav__titulo { font-size: 2.5rem; }
+            .hero__main { 
+                flex-direction: column; 
+                text-align: center; 
+                padding-top: 20px;
+            }
+            .hero__container {
+                max-width: 100%;
+            }
+            .image-container { 
+                justify-content: center; 
+                margin-top: 40px; 
+            }
+            .hero__title { 
+                font-size: 2.2rem; /* Título más pequeño en móvil */
+            }
+            .nav { 
+                height: auto; 
+                padding: 20px 5%; 
+                flex-direction: column; 
+                gap: 20px; 
+            }
+            .nav__titulo { 
+                position: static; /* Quitamos el absolute en móvil para que se vea */
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+                pointer-events: auto;
+            }
+            .nav__link--menu {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap; /* Para que los botones bajen si no caben */
+                padding: 10px;
+                border-radius: 20px;
+            }
+            .nav__links {
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+            .nav__img {
+                max-width: 300px;
+            }
+            .hero {
+                clip-path: polygon(100% 0, 100% 95%, 50% 100%, 0 95%, 0 0); /* Ajuste de curva en móvil */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav__link--menu {
+                gap: 2px;
+            }
+            .nav__links {
+                padding: 5px 8px;
+                font-size: 0.8rem;
+            }
+            .nav__login {
+                padding: 8px 15px !important;
+            }
         }
     </style>
 </head>
@@ -305,7 +350,6 @@
                 <li><a href="productos.php" class="nav__links">Productos</a></li>
                 <li><a href="contacto.php" class="nav__links">Contacto</a></li>
                 <li><a href="login.php" class="nav__links nav__login">Login</a></li>
-                
             </ul>
         </nav>
 
