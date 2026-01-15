@@ -22,10 +22,12 @@
             color: #333;
         }
 
-        /* --- HEADER ESTILO INDEX (MENÚ CENTRADO) --- */
+        /* --- HEADER Y NAVEGACIÓN --- */
         .nav-container {
             background: linear-gradient(180deg, #370a8ae0 0%, var(--primary-color) 100%);
             padding: 10px 0;
+            position: relative;
+            z-index: 1000;
         }
 
         .nav {
@@ -60,6 +62,7 @@
             margin: 0 auto; 
             gap: 5px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
         .nav__links {
@@ -77,7 +80,18 @@
             color: var(--accent-color);
         }
 
-        /* --- HERO NOSOTROS --- */
+        /* --- BOTÓN HAMBURGUESA (NUEVO) --- */
+        .nav__btn-hamburguesa {
+            display: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            z-index: 100;
+        }
+
+        /* --- HERO --- */
         .about-hero {
             padding: 100px 5% 80px;
             text-align: center;
@@ -100,7 +114,7 @@
             line-height: 1.6;
         }
 
-        /* --- TARJETAS DE ENFOQUE --- */
+        /* --- TARJETAS --- */
         .mision-vision {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -130,7 +144,7 @@
 
         .mv-card h2 { color: var(--primary-color); margin-bottom: 15px; font-weight: 700; }
 
-        /* --- HISTORIA Y ACTUALIDAD --- */
+        /* --- HISTORIA --- */
         .history {
             padding: 80px 5%;
             max-width: 1100px;
@@ -153,7 +167,7 @@
             height: 350px;
         }
 
-        /* --- VALORES CORE --- */
+        /* --- VALORES --- */
         .values {
             background: var(--primary-color);
             color: white;
@@ -173,10 +187,66 @@
 
         .footer { background: #0a0a0a; color: white; padding: 60px 5%; text-align: center; }
 
+        /* --- RESPONSIVE OPTIMIZADO --- */
         @media (max-width: 992px) {
-            .nav { height: auto; padding: 30px 20px; flex-direction: column; }
-            .nav__titulo { position: static; margin-bottom: 25px; }
-            .nav__link--menu { width: 100%; justify-content: center; flex-wrap: wrap; }
+            .nav__btn-hamburguesa {
+                display: block;
+            }
+
+            .nav { 
+                height: 80px; 
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+
+            .nav__titulo { 
+                position: static; 
+                font-size: 1.8rem;
+                margin-bottom: 0;
+            }
+
+            .nav__link--menu { 
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #2a087a;
+                border-radius: 0;
+                padding: 30px 0;
+                border: none;
+                backdrop-filter: none;
+                gap: 0;
+            }
+
+            .nav__link--menu.is-active {
+                display: flex;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+
+            .nav__link--menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav__links {
+                display: block;
+                width: 100%;
+                padding: 15px 0;
+                font-size: 1.1rem;
+            }
+
+            .nav__link--menu li:last-child a {
+                background: var(--accent-color) !important;
+                color: var(--primary-color) !important;
+                margin: 10px auto !important;
+                border-radius: 10px !important;
+                width: 80%;
+            }
+
+            .about-hero h1 { font-size: 2.5rem; }
+            .history-img { box-shadow: 15px 15px 0 var(--accent-color); height: auto; }
         }
     </style>
 </head>
@@ -185,7 +255,12 @@
     <div class="nav-container">
         <nav class="nav">
             <a href="index.php" class="nav__titulo">LogiPlanner</a>
-            <ul class="nav__link--menu">
+            
+            <div class="nav__btn-hamburguesa" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav__link--menu" id="nav-links">
                 <li><a href="quienes.php" class="nav__links">Nosotros</a></li>
                 <li><a href="funciona.php" class="nav__links">Cómo funciona</a></li>
                 <li><a href="productos.php" class="nav__links">Productos</a></li>
@@ -252,5 +327,16 @@
         <p>&copy; 2026 LogiPlanner - Potenciando tu gestión de inventario.</p>
     </footer>
 
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('is-active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    </script>
 </body>
 </html>

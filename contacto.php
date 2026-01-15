@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Contacto | LogiPlanner</title>
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="./css/estilos.css">
@@ -15,17 +15,28 @@
             --text-white: #ffffff;
         }
 
-        body {
-            font-family: 'Segoe UI', sans-serif;
+        /* 1. CORRECCIÓN GLOBAL DE ESPACIOS BLANCOS */
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
             background-color: var(--bg-light);
+            font-family: 'Segoe UI', sans-serif;
             color: #333;
         }
 
-        /* --- NAVEGACIÓN (CENTRADA) --- */
+        /* --- NAVEGACIÓN --- */
         .nav-container {
             background: linear-gradient(180deg, #370a8ae0 0%, var(--primary-color) 100%);
             padding: 10px 0;
+            position: relative;
+            z-index: 1000;
+            width: 100%;
         }
 
         .nav {
@@ -46,7 +57,7 @@
             text-decoration: none;
             position: absolute;
             left: 20px; 
-            z-index: 10;
+            z-index: 1010;
         }
 
         .nav__link--menu {
@@ -60,6 +71,7 @@
             margin: 0 auto; 
             gap: 5px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
         .nav__links {
@@ -77,6 +89,16 @@
             color: var(--accent-color);
         }
 
+        .nav__btn-hamburguesa {
+            display: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            z-index: 1010;
+        }
+
         /* --- SECCIÓN CONTACTO --- */
         .contact-container {
             max-width: 1100px;
@@ -87,7 +109,6 @@
             gap: 40px;
         }
 
-        /* Formulario */
         .contact-form {
             background: white;
             padding: 40px;
@@ -97,21 +118,16 @@
 
         .contact-form h2 { color: var(--primary-color); margin-bottom: 25px; }
 
-        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group { margin-bottom: 20px; }
         .input-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
         
-        .input-group input, .input-group textarea {
+        .input-group input, .input-group textarea, .input-group select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #eee;
             border-radius: 12px;
             outline: none;
-            transition: 0.3s;
-            box-sizing: border-box;
-        }
-
-        .input-group input:focus, .input-group textarea:focus {
-            border-color: var(--accent-color);
+            font-family: inherit;
         }
 
         .btn-submit {
@@ -126,9 +142,6 @@
             transition: 0.3s;
         }
 
-        .btn-submit:hover { background: var(--accent-color); transform: translateY(-3px); }
-
-        /* Info de contacto */
         .contact-info {
             background: var(--primary-color);
             color: white;
@@ -149,20 +162,47 @@
             color: var(--accent-color);
         }
 
-        .info-item h4 { margin: 0; font-size: 1.1rem; }
-        .info-item p { margin: 5px 0 0; opacity: 0.8; }
+        .footer { background: #0a0a0a; color: white; padding: 40px 5%; text-align: center; }
 
-        .social-links { margin-top: 20px; display: flex; gap: 15px; }
-        .social-links a { color: white; font-size: 1.5rem; transition: 0.3s; }
-        .social-links a:hover { color: var(--accent-color); }
+        /* --- RESPONSIVE OPTIMIZADO PARA COINCIDIR CON LA IMAGEN --- */
+        @media (max-width: 992px) {
+            .nav__btn-hamburguesa { display: block; }
+            .nav { height: 80px; }
+            .nav__titulo { position: relative; left: 0; font-size: 1.8rem; }
 
-        /* --- FOOTER --- */
-        .footer { background: #0a0a0a; color: white; padding: 40px 5%; text-align: center; margin-top: 50px; }
+            .nav__link--menu { 
+                display: none; 
+                flex-direction: column;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: var(--primary-color);
+                border-radius: 0;
+                padding-top: 100px;
+                border: none;
+                backdrop-filter: none;
+                z-index: 1005;
+            }
 
-        @media (max-width: 850px) {
-            .contact-container { grid-template-columns: 1fr; }
-            .nav { height: auto; padding: 20px; flex-direction: column; }
-            .nav__titulo { position: static; margin-bottom: 20px; }
+            .nav__link--menu.is-active { display: flex; }
+            .nav__link--menu li { width: 100%; text-align: center; margin: 10px 0; }
+            .nav__links { display: inline-block; font-size: 1.2rem; }
+
+            /* AJUSTE PARA QUE EL BOTÓN QUEDE COMO EN LA IMAGEN */
+            .nav__link--menu li:last-child a {
+                background: var(--accent-color) !important;
+                color: var(--primary-color) !important;
+                margin: 20px auto !important; /* Más espacio arriba/abajo */
+                border-radius: 15px !important; /* Bordes redondeados como la captura */
+                width: 85% !important; /* Ocupa casi todo el ancho */
+                display: block;
+                font-weight: 800;
+                padding: 15px 0; /* Más alto para que se vea como botón real */
+            }
+            
+            .contact-container { grid-template-columns: 1fr; margin-top: 30px; }
         }
     </style>
 </head>
@@ -171,12 +211,17 @@
     <div class="nav-container">
         <nav class="nav">
             <a href="index.php" class="nav__titulo">LogiPlanner</a>
-            <ul class="nav__link--menu">
+            
+            <div class="nav__btn-hamburguesa" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav__link--menu" id="nav-links">
                 <li><a href="quienes.php" class="nav__links">Nosotros</a></li>
                 <li><a href="funciona.php" class="nav__links">Cómo funciona</a></li>
                 <li><a href="productos.php" class="nav__links">Productos</a></li>
                 <li><a href="contacto.php" class="nav__links">Contacto</a></li>
-                <li><a href="login.php" class="nav__links" style="background: var(--accent-color); border-radius: 25px; font-weight: 700; margin-left: 10px;">Login</a></li>
+                <li><a href="login.php" class="nav__links">Login</a></li>
             </ul>
         </nav>
     </div>
@@ -195,7 +240,8 @@
                 </div>
                 <div class="input-group">
                     <label>Asunto</label>
-                    <select style="width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 12px;">
+                    <select required>
+                        <option value="" disabled selected>Selecciona una opción</option>
                         <option>Soporte Técnico de Inventarios</option>
                         <option>Información sobre Enrutamiento</option>
                         <option>Ventas / Planes</option>
@@ -250,5 +296,22 @@
         <p>&copy; 2026 LogiPlanner - Innovación que mueve al mundo.</p>
     </footer>
 
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('is-active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+            
+            if (navLinks.classList.contains('is-active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>

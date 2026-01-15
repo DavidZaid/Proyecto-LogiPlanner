@@ -1,118 +1,157 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    :root {
+        --primary-color: #2a087a;
+        --accent-color: #00d1d1;
+        --bg-light: #f4f7fe;
+        --text-white: #ffffff;
+    }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    overflow-x: hidden;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
 
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: white;
-    padding: 15px 25px;
-    border-radius: 8px;
-    width: 90%;          /* Esto hace que en celular ocupe casi toda la pantalla */
-    max-width: 400px;    /* Esto evita que en PC se vea gigante */
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
-    margin: 20px auto;   /* Centra el cuadrito */
-}
+    /* --- HERO & NAVEGACIÓN PC --- */
+    .hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
 
-/* Header & Nav */
-.hero {
-    width: 100%;
-    height: 100vh;
-    min-height: 700px;
-    position: relative;
-    display: grid;
-    grid-template-rows: 100px 1fr;
-    color: #fff;
-}
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 5%;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1000;
+    }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(180deg, #370a8ae0 0%, #2a087a 100%);
-    clip-path: polygon(100% 0, 100% 88%, 50% 100%, 0 88%, 0 0);
-    z-index: -1;
-}
+    .nav__titulo {
+        font-size: 2.2rem;
+        font-weight: 900;
+        color: #fff;
+        position: absolute;
+        left: -280px; 
+        top: 15px;
+    }
 
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+    .nav__link--menu {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: 5px 15px;
+        border-radius: 50px;
+        gap: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        margin-left: auto;
+    }
 
-.nav__titulo {
-    font-size: 50px;
-}
+    .nav__links {
+        color: var(--text-white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 8px 12px;
+        transition: 0.3s;
+    }
 
-.nav__link {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
+    .nav__login {
+        background: var(--accent-color);
+        padding: 8px 20px !important;
+        border-radius: 25px;
+        color: #fff !important;
+        text-decoration: none;
+    }
 
-.nav__links {
-    color: #fff;
-    text-decoration: none;
-    transition: 0.3s;
-}
+    .hero__main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+        padding: 60px 5%;
+        width: 100%;
+    }
 
-/* Efecto para el botón de Login específicamente */
-.nav__link--menu li a[href="login.php"]:hover {
-    background-color: #00b8b8 !important; /* Un cian un poco más oscuro */
-    transform: scale(1.05);
-    transition: 0.3s;
-}
+    /* --- ESTILO PARA MÓVIL (CORRIGE EL ERROR DE LA IMAGEN) --- */
+    @media (max-width: 900px) {
+        .nav {
+            flex-direction: column !important;
+            padding: 20px 5% !important;
+            height: auto !important;
+            gap: 15px !important;
+        }
 
-/* Textos Hero */
-.hero__title {
-    font-size: 3.5rem;
-    margin-bottom: 70px;
-}
+        .nav__titulo {
+            position: static !important;
+            left: 0 !important;
+            margin: 0 auto !important;
+            font-size: 2.5rem !important;
+            text-align: center;
+            width: 100%;
+        }
 
-.hero__paragraph {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
+        .nav__link--menu {
+            width: 100% !important;
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr); /* Crea dos columnas iguales */
+            gap: 10px !important;
+            background: rgba(255, 255, 255, 0.2) !important;
+            padding: 15px !important;
+            border-radius: 20px !important;
+            margin: 0 !important;
+        }
 
-/* Botones */
-.cta {
-    display: inline-block;
-    background: #008b8b;
-    color: white;
-    text-decoration: none;
-    padding: 20px 45px;
-    border-radius: 50px;
-    font-weight: 600;
-    transition: 0.3s;
-}
+        .nav__link--menu li {
+            list-style: none;
+            text-align: center;
+        }
 
-.cta:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-}
+        /* El login ocupa las dos columnas abajo para que se vea bien */
+        .nav__link--menu li:last-child {
+            grid-column: span 2;
+        }
 
-/* Soluciones */
-.services { padding: 100px 5%; text-align: center; }
-.services__table { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px; }
-.services__item { padding: 40px; background: #f9f9f9; border-radius: 20px; transition: 0.3s; }
-.services__item:hover { transform: scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.1); background: #fff; }
+        .nav__links {
+            font-size: 0.85rem !important;
+            padding: 10px 5px !important;
+            display: block;
+        }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .image-container { display: none; }
-    .hero__container { text-align: center; left: 0; margin: 0 auto; max-width: 90%; }
-}
+        .nav__login {
+            width: 100% !important;
+            display: block !important;
+            margin-top: 5px !important;
+            padding: 12px !important;
+        }
+
+        .hero__main {
+            flex-direction: column !important;
+            text-align: center !important;
+            padding: 30px 5% 100px !important;
+        }
+
+        .hero__title {
+            font-size: 2.3rem !important;
+            line-height: 1.2 !important;
+        }
+
+        .nav__img {
+            max-width: 260px !important;
+            margin-top: 30px;
+        }
+
+        .hero::before {
+            clip-path: polygon(100% 0, 100% 96%, 50% 100%, 0 96%, 0 0) !important;
+        }
+    }

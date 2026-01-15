@@ -22,10 +22,12 @@
             color: #333;
         }
 
-        /* --- HEADER ESTILO INDEX (MENÚ CENTRADO) --- */
+        /* --- HEADER ESTILO INDEX (MENÚ CENTRADO EN PC) --- */
         .nav-container {
             background: linear-gradient(180deg, #370a8ae0 0%, var(--primary-color) 100%);
             padding: 10px 0;
+            position: relative;
+            z-index: 1000;
         }
 
         .nav {
@@ -35,7 +37,7 @@
             padding: 0 5%;
             max-width: 1300px;
             margin: 0 auto;
-            position: relative; /* Clave para el posicionamiento del título */
+            position: relative;
         }
 
         .nav__titulo {
@@ -44,7 +46,6 @@
             color: #fff;
             letter-spacing: -1.5px;
             text-decoration: none;
-            /* Control manual para la izquierda idéntico al index */
             position: absolute;
             left: 20px; 
             z-index: 10;
@@ -58,9 +59,10 @@
             backdrop-filter: blur(15px);
             padding: 8px 15px;
             border-radius: 50px;
-            margin: 0 auto; /* ESTO centra el menú perfectamente */
+            margin: 0 auto; 
             gap: 5px;
             border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
         }
 
         .nav__links {
@@ -76,6 +78,17 @@
             background: rgba(255, 255, 255, 0.2);
             border-radius: 25px;
             color: var(--accent-color);
+        }
+
+        /* --- BOTÓN HAMBURGUESA --- */
+        .nav__btn-hamburguesa {
+            display: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            z-index: 100;
         }
 
         /* --- SECCIÓN HERO NOSOTROS --- */
@@ -179,12 +192,69 @@
         /* --- FOOTER --- */
         .footer { background: #0a0a0a; color: white; padding: 60px 5%; text-align: center; border-top: 1px solid #222; }
 
+        /* --- ARREGLO FINAL DEL MENÚ MÓVIL --- */
         @media (max-width: 992px) {
-            .nav { height: auto; padding: 30px 20px; flex-direction: column; }
-            .nav__titulo { position: static; margin-bottom: 25px; }
-            .nav__link--menu { width: 100%; justify-content: center; }
+            .nav__btn-hamburguesa {
+                display: block;
+            }
+
+            .nav { 
+                height: 80px; 
+                justify-content: space-between;
+                padding: 0 20px;
+            }
+
+            .nav__titulo { 
+                position: static; 
+                font-size: 1.8rem;
+            }
+
+            .nav__link--menu { 
+                display: none; 
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: #2a087a; /* Color sólido para que no se trasluzca texto */
+                border-radius: 0;
+                padding: 30px 0;
+                border: none;
+                backdrop-filter: none;
+                gap: 0; /* Quitamos el espacio para controlar el padding manual */
+            }
+
+            .nav__link--menu.is-active {
+                display: flex;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+
+            .nav__link--menu li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav__links {
+                display: block;
+                width: 100%;
+                padding: 15px 0;
+                font-size: 1.1rem;
+                border-radius: 0;
+            }
+
+            /* Estilo especial para el login en móvil para que no flote feo */
+            .nav__link--menu li:last-child a {
+                background: var(--accent-color) !important;
+                color: var(--primary-color) !important;
+                margin: 10px 20px !important;
+                border-radius: 10px !important;
+                display: inline-block;
+                width: 80%;
+            }
+
             .history { text-align: center; }
-            .history-img { box-shadow: 15px 15px 0 var(--accent-color); }
+            .history-img { box-shadow: 15px 15px 0 var(--accent-color); height: auto; }
+            .about-hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
@@ -193,7 +263,12 @@
     <div class="nav-container">
         <nav class="nav">
             <a href="index.php" class="nav__titulo">LogiPlanner</a>
-            <ul class="nav__link--menu">
+            
+            <div class="nav__btn-hamburguesa" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <ul class="nav__link--menu" id="nav-links">
                 <li><a href="quienes.php" class="nav__links">Nosotros</a></li>
                 <li><a href="funciona.php" class="nav__links">Cómo funciona</a></li>
                 <li><a href="productos.php" class="nav__links">Productos</a></li>
@@ -257,8 +332,19 @@
     </section>
 
     <footer class="footer">
-        <p>&copy; 2026 LogiPlanner - Innovación que mueve al mundo.</p>
+        <p>&copy; 2024 LogiPlanner - Innovación que mueve al mundo.</p>
     </footer>
 
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('is-active');
+            const icon = menuToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+    </script>
 </body>
 </html>
